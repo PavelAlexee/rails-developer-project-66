@@ -1,0 +1,4 @@
+john:
+  email: john@test.com
+  nickname: github
+  token: <%= SecureRandom.hex(10) %>

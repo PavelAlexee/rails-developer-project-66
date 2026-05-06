@@ -1,0 +1,25 @@
+- if object.total_pages > 1
+  .d-flex.flex-column.flex-md-row.justify-content-between.align-items-center.mt-5.pt-3.border-top
+    nav.ms-md-auto.me-md-auto
+      ul.pagination.pagination-sm
+        - if object.prev_page
+          li.page-item
+            = link_to url_for(page: object.prev_page), class: 'page-link' do
+              span &larr; #{t('paginator.back')}
+        - else
+          li.page-item.disabled
+            span.page-link &larr; #{t('paginator.back')}
+
+        li.page-item.disabled
+          span.page-link
+            = object.current_page
+            | /
+            = object.total_pages
+
+        - if object.next_page
+          li.page-item
+            = link_to url_for(page: object.next_page), class: 'page-link' do
+              span #{t('paginator.forward')} &rarr;
+        - else
+          li.page-item.disabled
+            span.page-link #{t('paginator.forward')} &rarr;
