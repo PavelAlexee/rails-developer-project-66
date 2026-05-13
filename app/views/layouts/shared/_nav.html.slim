@@ -1,20 +1,30 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mb-4.border-bottom.border-secondary
-  .container-fluid
-    ul.nav.nav-pills
-      li.nav-item.me-2
-        = link_to t('nav.home'), root_path,
-                            class: 'navbar-brand text-light fw-normal'
-    
-    - if signed_in?
-        span.navbar-text.me-3.text-white-50
-          small = t('nav.greeting', name: current_user.name)
-        ul.nav.nav-pills
-              
-          li.nav-item.me-2
-            = button_to t('nav.logout'), auth_logout_path, method: :delete,
-                                class: 'btn btn-outline-secondary btn-sm'
-    - else
-      = button_to t('nav.login_with_github'), auth_request_path('github'),
-                                        method: :post,
-                                        data: { turbo: false },
-                                        class: 'btn btn-outline-light btn-sm'
+body.min-vh-100.d-flex.flex-column
+  .container.mb-2
+    .d-flex.flex-wrap.align-items-center.py-2.border-bottom
+      .navbar.navbar-expand-md.navbar-light.me-auto
+        a.navbar-brand.me-md-4 href="/"
+          img src="/hexlet_logo.png" width="30"
+        .collapse.navbar-collapse#navbarToggler
+          ul.nav.nav-pills.flex-grow-1.navbar-nav.me-auto
+            li.nav-item.me-2
+              = link_to t('nav.home'), root_path,
+                 class: 'nav-link text-dark'
+            - if signed_in?
+              = link_to t('nav.repo'), repositories_path,
+                class: 'nav-link text-dark'  
+      ul.nav.nav-pills
+        li.nav-item
+            - if signed_in?
+              ul.nav.nav-pills
+                li.nav-item
+                  span.nav-link.text-secondary = current_user.email
+                li.nav-item
+                  = button_to t('nav.logout'), auth_logout_path, method: :delete,
+                              data: { turbo: false },
+                              class: 'nav-link text-dark'
+            - else
+              = button_to auth_request_path('github'), method: :post,
+                          data: { turbo: false },
+                          class: 'nav-link text-dark' do
+                span.bi.bi-github.me-2
+                = t('nav.login_with_github')

@@ -1,0 +1,26 @@
+.container.mt-4
+  .p-4.align-items-center.border.shadow.bg-white.rounded-3
+    .mb-4
+      = link_to t('repositories.add_new'), new_repository_path, class: 'btn btn-primary'
+      
+      - if @repositories.any?
+        table.table.table-striped.table-hover.mt-4
+          thead
+            tr
+              th = t('repositories.name')
+              th = t('repositories.language')
+              th = t('repositories.check_status')
+          tbody
+            - @repositories.each do |repo|
+              tr
+                td
+                  = link_to repo.full_name, repository_path(repo)
+                td = repo.language || 'ruby'
+                td
+                  - if repo 
+                    // .checks.any?
+                    span.badge.bg-success = t('repositories.completed')
+                  - else
+                    span.badge.bg-secondary = t('repositories.no_tested')
+      - else
+        .alert.alert-info.mt-4 = t('repositories.no_repositories')
