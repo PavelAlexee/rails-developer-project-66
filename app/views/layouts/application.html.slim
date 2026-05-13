@@ -27,12 +27,11 @@ html
                               type: 'module'
 
 
-  body
+  body.min-vh-100.d-flex.flex-column
     header
       = render 'layouts/shared/nav'
 
-    .container.mt-3
-      = render 'layouts/shared/flash' if flash.any?
-
     main
       = yield
+      
+    = render 'layouts/shared/footer'

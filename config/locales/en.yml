@@ -1,13 +1,53 @@
+# frozen_string_literal: true
+
 en:
   nav:
     home: "Главная"
     my_bulletins: "Мои объявления"
     admin_panel: "Админка"
-    logout: "Выход"
-    login_with_github: "Войти через GitHub"
+    logout: "Выйти"
+    login_with_github: "Войти с помощью Github"
     greeting: "Привет, %{name}"
+    repo: "Репозитории"
+  main:
+    hello: "Привет от Хекслета!"  
+    under_hello: "Практические курсы по программированию"
+    analyze: "Анализатор качества репозиториев"
+    info_project: "Проект, который помогает автоматически следить за качеством репозиториев на Github. Он отслеживает изменения и прогоняет их через встроенные анализаторы. Затем формирует отчеты и отправляет их пользователю."
+
   flash:
     auth:
       success: "Успешный вход!"
       failure: "Ошибка аутентификации"
       logout: "Успешный выход!"
+    repositories:
+      created: "Репозиторий успешно добавлен"
+      destroyed: "Репозиторий успешно удален"
+      not_found: "Выбранный репозиторий не найден"
+      github_auth_error: "Ошибка авторизации GitHub. Пожалуйста, войдите снова."  
+      no_repos_found: "Ruby репозитории на GitHub не найдены"
+      rate_limit: "Превышен лимит запросов к GitHub API. Пожалуйста, попробуйте позже"
+      github_error: "Ошибка GitHub API: %{error}"
+
+  repositories:
+    title: "Мои репозитории"
+    add: "Добавить репозиторий"
+    name: "Название"
+    language: "Язык"
+    check_status: "Статус последней проверки"
+    clone_url: "URL для клонирования"
+    actions: "Действия"
+    delete: "Удалить"
+    confirm_delete: "Вы уверены, что хотите удалить этот репозиторий?"
+    no_repositories: "Вы еще не добавили ни одного Ruby репозитория."
+    add_new: "Добавление нового репозитория"
+    github: "Github"
+    select_repo: "Выберите репозиторий из GitHub"
+    select_prompt: "Выберите репозиторий..."
+    create: "Создать Repository"
+    creating: "Создание..."
+    cancel: "Отмена"
+    no_ruby_repos: "У вас нет Ruby репозиториев на GitHub."
+    refresh: "Обновить"
+    completed: "Завершена"
+    no_tested: "Не проверялся"

@@ -1,0 +1,22 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .mb-4
+        h1 = t('repositories.add_new')
+        
+        - if @github_repos.nil? || @github_repos.empty?
+          .alert.alert-warning
+            = t('repositories.no_ruby_repos')
+            = link_to t('repositories.refresh'), new_repository_path, class: 'alert-link ms-2'
+        - else
+          = simple_form_for @repository, url: repositories_path, html: { novalidate: true } do |f|
+            .mb-3.select.required.repository_github_id
+              = f.label :github_id, class: 'form-label select required' do
+                = t('repositories.github')
+                abbr title="required" *
+              = f.select :github_id,
+                  options_from_collection_for_select(@github_repos, :id, :full_name),
+                  { include_blank: ' ' },
+                  { class: 'form-select select required', required: true }
+            
+            = f.submit t('repositories.create'), class: 'btn btn btn-success', data: { turbo: false, disable_with: t('repositories.creating') }

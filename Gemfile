@@ -4,10 +4,12 @@ source 'https://rubygems.org'
 
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'enumerize'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'kamal', require: false
+gem 'octokit'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
@@ -50,9 +52,10 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'webdrivers'
   gem 'omniauth-github'
   gem 'omniauth-rails_csrf_protection'  
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'webdrivers'
+  gem 'webmock'
 end
