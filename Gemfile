@@ -2,8 +2,11 @@
 
 source 'https://rubygems.org'
 
+gem 'aasm'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
+gem 'dry-container'
+gem 'dry-auto_inject'
 gem 'enumerize'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'

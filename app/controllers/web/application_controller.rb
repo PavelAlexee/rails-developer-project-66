@@ -20,4 +20,6 @@ class Web::ApplicationController < ApplicationController
 
     redirect_to root_path, alert: t('flash.auth_required')
   end
+
+  alias_method :authenticate_user, :authenticate_user!
 end

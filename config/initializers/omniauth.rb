@@ -5,3 +5,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 end
 
 OmniAuth.config.allowed_request_methods = [:post, :get]
+OmniAuth.config.test_mode = true
+OmniAuth.config.request_validation_phase = nil
