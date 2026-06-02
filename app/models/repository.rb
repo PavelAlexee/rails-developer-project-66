@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Repository < ApplicationRecord
+  extend Enumerize
 
-  extend Enumerize 
-  
+  has_many :checks, class_name: 'Repository::Check', dependent: :destroy
+
   belongs_to :user
-    
-  enumerize :language, in: %i[ruby], predicates: true, default: :ruby                 
+
+  enumerize :language, in: %i[ruby], predicates: true, default: :ruby
 
   validates :github_id, presence: true
 
@@ -19,5 +20,21 @@ class Repository < ApplicationRecord
       repository.ssh_url = repo_data.ssh_url
       repository.user = user
     end
+  end
+
+  def last_check
+    checks.order(created_at: :desc).first
+  end
+
+  def last_check_status
+    last_check&.aasm_state
+  end
+
+  def github_url
+    "https://github.com/#{full_name}"
+  end
+  
+  def commit_url(commit_hash)
+    "#{github_url}/commit/#{commit_hash}" if commit_hash.present?
   end
 end

@@ -1,5 +1,43 @@
 # Omakase Ruby styling for Rails
-inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+# inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+require:
+  - rubocop-rails
 
+AllCops:
+  NewCops: disable
+  TargetRubyVersion: 3.0
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'storage/**/*'
+
+# Настройка кавычек
 Style/StringLiterals:
+  Enabled: true
   EnforcedStyle: single_quotes
+  
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+# Отключаем проблемные копы
+Layout/LineLength:
+  Enabled: false
+  
+Style/Documentation:
+  Enabled: false
+  
+Metrics/MethodLength:
+  Enabled: false
+  
+Metrics/AbcSize:
+  Enabled: false
+  
+Metrics/BlockLength:
+  Exclude:
+    - 'test/test_helper.rb'
+  

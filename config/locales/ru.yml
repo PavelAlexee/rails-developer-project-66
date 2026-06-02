@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-en:
+ru:
   nav:
     home: "Главная"
     my_bulletins: "Мои объявления"
@@ -74,24 +74,27 @@ en:
 
   checks:
     title: "Проверки"
-    run_check: "Запустить проверку"
-    commit_id: "Коммит"
+    run_check: "Проверить"
+    commit_id: "ID коммита"
     state: "Статус"
-    issues_count: "Кол-во проблем"
-    created_at: "Дата"
+    issues_check: "Проверка пройдена?"
+    created_at: "Дата создания"
     actions: "Действия"
     view: "Просмотр"
     no_checks: "Проверки еще не выполнялись. Нажмите кнопку «Запустить проверку» для начала."
-    detail_title: "Детали проверки"
-    back_to_repo: "Назад к репозиторию"
+    detail_title: "Проверка # %{id}"
+    back_to_repo: "Перейти к репозиторию"
     repository: "Репозиторий"
     issues_detail: "Подробности проблем"
     raw_output: "Вывод линтера"
     no_issues: "Проблемы не найдены! Код чист."
+    passed: "Проверка пройдена"
+    issues_count: "Количество замечаний"
     states:
       created: "Создана"
-      fetching: "Загрузка"
-      linting: "Проверка"
-      in_progress: "В процессе"
+      in_process: "В процессе"
+      passed: "Пройдена"
+      failed: "Провалена"
+      error: "Ошибка" 
       finished: "Завершена"
-      failed: "Ошибка"
+

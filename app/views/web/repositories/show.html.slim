@@ -1,0 +1,49 @@
+mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .mb-4
+        h1 = @repository.full_name
+        div
+          = button_to t('checks.run_check'), repository_checks_path(@repository), method: :post, class: 'btn btn-primary mb-2', data: { turbo: false }
+
+      .row.mb-4
+        .col-md-6
+          table.table
+            tr
+              th = t('repositories.name')
+              td = @repository.full_name
+            tr
+              th = t('repositories.language')
+              td = @repository.language || 'ruby'
+            tr
+              th = t('repositories.date_create')
+              td = l(@repository.created_at, format: :custom) 
+            tr
+              th = t('repositories.date_update')
+              td = l(@repository.updated_at, format: :custom)
+
+      h3.mb-3 = t('checks.title')
+
+      - if @checks.any?
+        table.table.table-striped.table-hover
+          thead
+            tr
+              th
+              th = t('checks.state')
+              th = t('checks.commit_id')
+              th = t('checks.issues_check')
+              th = t('checks.created_at')
+          tbody
+            - @checks.each do |check|
+              tr
+                td = link_to check.id, repository_check_path(@repository, check)
+                td = t("checks.states.#{check.aasm_state}")                  
+                td
+                  - if check.commit_id.present?
+                    = link_to truncate(check.commit_id, length: 10), @repository.commit_url(check.commit_id), target: "_blank", rel: "noopener"
+                  - else
+                    | —
+                td = check.passed?
+                td = l(check.created_at, format: :short)
+      - else
+        .alert.alert-info = t('checks.no_checks')

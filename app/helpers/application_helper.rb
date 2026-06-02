@@ -13,4 +13,19 @@ module ApplicationHelper
       'info'
     end
   end
+
+  def check_state_name(check)
+    case check.aasm_state
+    when 'created'
+      t('checks.states.created')
+    when 'in_process'
+      t('checks.states.in_process')
+    when 'finished'
+      check.passed? ? t('checks.states.passed') : t('checks.states.failed')
+    when 'failed'
+      t('checks.states.error')
+    else
+      check.aasm_state
+    end
+  end
 end

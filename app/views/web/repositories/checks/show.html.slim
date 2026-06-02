@@ -1,0 +1,46 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .mb-4
+        = link_to t('checks.back_to_repo'), repository_path(@check.repository), class: 'btn btn-primary mb-4'
+      
+      h1 = t('checks.detail_title', id: @check.id)
+
+      table.table
+        tbody
+          tr
+            td = t('checks.created_at')
+            td = l(@check.created_at, format: :custom)
+          tr
+            td = t('checks.state')
+            td = t("checks.states.#{@check.aasm_state}")
+                
+          tr
+            td = t('checks.passed')
+            td = @check.passed?
+          tr
+            td = t('checks.issues_count')
+            td = @check.issues_count
+          tr
+            td = t('checks.commit_id')
+            td 
+              - if @check.commit_id.present?
+                = link_to truncate(@check.commit_id, length: 10), @check.repository.commit_url(@check.commit_id), target: "_blank", rel: "noopener"
+        table.table.table-hover.mb-5
+          thead
+            tr
+              th Сообщение
+              th Идентификатор правила
+              th Строка и символ
+          tbody
+            - if @parsed_output.present? && @parsed_output['files'].present?
+              - @parsed_output['files'].each do |file_data|
+                tr
+                  td colspan="3"
+                    a href="https://github.com/#{@check.repository.full_name}/tree/#{@check.commit_id}/#{file_data['path']}" target="_blank" rel="noopener"
+                      = file_data['path']
+                - file_data['offenses'].each do |offense|
+                  tr
+                    td = offense['message']
+                    td = offense['cop_name']
+                    td = "#{offense['location']['line']}:#{offense['location']['column']}"

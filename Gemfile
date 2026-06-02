@@ -21,6 +21,8 @@ gem 'propshaft'
 gem 'psych', '~> 5.3.0'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 8.1.3'
+gem 'rails-i18n', '~> 8.1.0'
+gem 'rubocop-rails-omakase'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'solid_cable'
@@ -46,7 +48,6 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'slim_lint'
   gem 'sqlite3', '>= 2.1'
-
 end
 
 group :development do
@@ -61,4 +62,8 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'webmock'
+end
+
+group :production do
+  gem 'pg'
 end
