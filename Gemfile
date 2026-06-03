@@ -15,7 +15,7 @@ gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg', group: :production
 gem 'propshaft'
-gem 'psych', '~> 5.3.0'
+gem 'psych', '~> 5.4.0'
 gem 'puma', '>= 5.0'
 gem 'rails', '~> 8.1.3'
 gem 'simple_form'
