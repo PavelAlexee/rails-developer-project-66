@@ -3,7 +3,6 @@
 class Web::Repositories::ChecksController < Web::Repositories::ApplicationController
   before_action :authenticate_user!
   before_action :set_repository
-  before_action :set_check, only: [:show]
 
   def create
     check = @repository.checks.create!
@@ -13,7 +12,8 @@ class Web::Repositories::ChecksController < Web::Repositories::ApplicationContro
   end
 
   def show
-    @parsed_output = parse_lint_output(@check.check_log)
+    check = @repository.checks.find(params[:id])
+    @parsed_output = parse_lint_output(check.check_log)
   end
 
   private

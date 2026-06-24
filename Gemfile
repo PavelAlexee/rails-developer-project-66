@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 gem 'aasm'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
-gem 'dry-container'
 gem 'dry-auto_inject'
+gem 'dry-container'
 gem 'enumerize'
 gem 'image_processing', '~> 1.2'
 gem 'jbuilder'
@@ -33,7 +33,6 @@ gem 'thruster', require: false
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-
 group :development, :test do
   gem 'brakeman', require: false
   gem 'bundler-audit', require: false
@@ -56,14 +55,8 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'omniauth-github'
-  gem 'omniauth-rails_csrf_protection'  
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
   gem 'webmock'
-end
-
-group :production do
-  gem 'pg'
 end

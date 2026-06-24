@@ -2,22 +2,24 @@
 
 class Web::RepositoriesController < Web::ApplicationController
   before_action :authenticate_user!
-  before_action :set_repository, only: %i[show destroy]
-  before_action :set_github_repos, only: %i[new create]
 
   def index
     @repositories = current_user.repositories
   end
 
   def show
+    set_repository
     @checks = @repository.checks.order(created_at: :desc)
   end
 
   def new
+    set_github_repos
     @repository = Repository.new
   end
 
   def create
+    set_github_repos
+
     if @github_repos.blank?
       redirect_to new_repository_path, alert: t('flash.repositories.no_repos_found')
       return
@@ -47,6 +49,7 @@ class Web::RepositoriesController < Web::ApplicationController
   end
 
   def destroy
+    set_repository
     @repository.destroy
     redirect_to repositories_path, notice: t('flash.repositories.destroyed')
   end
