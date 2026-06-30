@@ -8,7 +8,7 @@ gem 'cssbundling-rails'
 gem 'dry-auto_inject'
 gem 'dry-container'
 gem 'enumerize'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 2.0'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'kamal', require: false
